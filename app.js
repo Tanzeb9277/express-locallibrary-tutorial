@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var config = require('./config')
+var dev_db_url = 'mongodb+srv://library-admin:library-password@cluster0.ksnn6uj.mongodb.net/?retryWrites=true&w=majority';
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -20,7 +20,7 @@ var app = express();
 
 //Set up mongoose connection
 var mongoose = require('mongoose');
-var mongoDB = process.env.MONGODB_URI || config.dev_db_url;
+var mongoDB = process.env.MONGODB_URI || dev_db_url;
 mongoose.connect(mongoDB, { useNewUrlParser: true , useUnifiedTopology: true});
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
